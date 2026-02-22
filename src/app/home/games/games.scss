@@ -1,0 +1,85 @@
+.love-game {
+  text-align: center;
+  padding: 2rem;
+}
+
+.game-header h3 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.game-header p {
+  color: #666;
+}
+
+.heart-wrapper {
+  margin: 1.5rem 0;
+}
+
+.main-heart {
+  font-size: 5rem;
+  color: #f06595;
+  transition: 0.5s ease;
+}
+
+.main-heart.bloom {
+  color: #ff6b6b;
+  transform: scale(1.3);
+}
+
+.main-heart.fade {
+  color: #999;
+  transform: scale(0.8);
+}
+
+/* METERS */
+.meters {
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+}
+
+.meter {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.bar {
+  height: 10px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.fill.trust { background: #4dabf7; }
+.fill.passion { background: #ff6b6b; }
+.fill.care { background: #69db7c; }
+
+/* ACTIONS */
+.actions button {
+  margin: 5px;
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid #f06595;
+  background: transparent;
+  color: #f06595;
+  transition: 0.3s;
+}
+
+.actions button:hover {
+  background: #f06595;
+  color: white;
+}
+
+.result {
+  margin-top: 1rem;
+}
+
+.timer {
+  margin-top: 1rem;
+  font-weight: 600;
+}

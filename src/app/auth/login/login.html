@@ -1,0 +1,91 @@
+<div class="login-wrapper">
+
+  <!-- Floating Hearts Background -->
+  <div class="hearts">
+    <span *ngFor="let h of [1,2,3,4,5,6,7,8]"></span>
+  </div>
+
+  <!-- Centered Card -->
+  <div class="card-wrapper">
+    <div class="card login-card shadow-lg">
+      <div class="card-body p-4">
+
+        <div class="text-center mb-4">
+          <i class="bi bi-balloon-heart-fill text-danger logo-icon"></i>
+          <h3 class="mt-2 fw-bold">Birthday Login</h3>
+          <p class="text-muted small">Enter to celebrate love 🎉</p>
+        </div>
+
+        <!-- Alert -->
+        <div
+          *ngIf="alertMessage"
+          class="alert fade show"
+          [ngClass]="{
+            'alert-success': alertType === 'success',
+            'alert-danger': alertType === 'error'
+          }"
+        >
+          {{ alertMessage }}
+        </div>
+
+        <form (ngSubmit)="onLogin()">
+
+          <!-- Email -->
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-white">
+              <i class="bi bi-person"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Email or Mobile"
+              [(ngModel)]="emailOrMobile"
+              name="emailOrMobile"
+              required
+            />
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-white">
+              <i class="bi bi-lock"></i>
+            </span>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              placeholder="Password"
+              [(ngModel)]="password"
+              name="password"
+              required
+            />
+            <span
+              class="input-group-text bg-white cursor-pointer"
+              (click)="togglePassword()"
+            >
+              <i
+                class="bi"
+                [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+              ></i>
+            </span>
+          </div>
+
+          <button type="submit" class="btn btn-gradient w-100">
+            <i class="bi bi-box-arrow-in-right me-1"></i>
+            Enter Celebration
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Love Loader -->
+  <div class="love-loader" *ngIf="isLoading">
+    <div class="loader-content">
+      <i class="bi bi-heart-fill pulse-heart"></i>
+      <p>Spreading Love...</p>
+    </div>
+  </div>
+
+</div>

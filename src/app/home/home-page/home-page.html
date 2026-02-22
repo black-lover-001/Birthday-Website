@@ -1,0 +1,72 @@
+<div class="container-fluid p-0">
+
+  <!-- Header -->
+  <div class="bg-primary text-white text-center py-4 shadow-sm">
+    <h2 class="mb-0">
+      <i class="bi bi-balloon-heart-fill me-2"></i>
+      Birthday Celebration
+    </h2>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="bg-light shadow-sm">
+    <ul class="nav nav-tabs justify-content-center pt-3" role="tablist">
+
+      <!-- Wishes Tab -->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/home/wishes"
+          routerLinkActive="active"
+        >
+          <i class="bi bi-stars me-1"></i>
+          Wishes
+        </a>
+      </li>
+
+      <!-- Photos Tab -->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/home/photos"
+          routerLinkActive="active"
+        >
+          <i class="bi bi-images me-1"></i>
+          Photos
+        </a>
+      </li>
+
+      <!-- Messages Tab -->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/home/messages"
+          routerLinkActive="active"
+        >
+          <i class="bi bi-chat-dots me-1"></i>
+          Messages
+        </a>
+      </li>
+
+      <!-- Game Tab  -->
+      <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/home/games"
+        routerLinkActive="active"
+      >
+        <i class="bi bi-controller me-1"></i>
+        Game
+      </a>
+    </li>
+
+
+    </ul>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="container py-4">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
