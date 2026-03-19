@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
 
-  apiBaseUrl: 'http://localhost:5000/api',
+  apiBaseUrl: 'https://birthday-api-6air.onrender.com',
 
   imageBaseUrl: 'http://localhost:5000/images',
 

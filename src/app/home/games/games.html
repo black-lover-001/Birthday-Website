@@ -1,62 +1,38 @@
-<div class="love-game">
+<div class="love-game" [class.shake]="shake">
 
-  <div class="game-header text-center">
-    <h3>Keep The Heart Alive</h3>
-    <p>Balance Trust, Passion & Care to nurture love 💗</p>
+  <div class="game-header">
+    <h3>Find Me ❤️</h3>
+    <p>I’m hiding… will you still choose me? 😏</p>
   </div>
 
-  <!-- Heart Visual -->
-  <div class="heart-wrapper">
-    <i class="bi bi-heart-fill main-heart"
-       [ngClass]="{
-         'stable': gameState === 'playing',
-         'bloom': gameState === 'win',
-         'fade': gameState === 'lose'
-       }">
-    </i>
-  </div>
+  <!-- GAME AREA -->
+  <div class="game-area">
 
-  <!-- Meters -->
-  <div class="meters">
-    <div class="meter">
-      <label>Trust 💞</label>
-      <div class="bar">
-        <div class="fill trust" [style.width.%]="trust"></div>
-      </div>
+    <div
+      class="heart"
+      *ngFor="let h of hearts; let i = index"
+      (click)="clickHeart(i)"
+      [ngStyle]="{
+        top: positions[i]?.top + '%',
+        left: positions[i]?.left + '%'
+      }"
+    >
+      {{ brokenIndexes.includes(i) ? '💔' : '❤️' }}
     </div>
 
-    <div class="meter">
-      <label>Passion 🔥</label>
-      <div class="bar">
-        <div class="fill passion" [style.width.%]="passion"></div>
-      </div>
-    </div>
-    <div class="meter">
-      <label>Care 🌿</label>
-      <div class="bar">
-        <div class="fill care" [style.width.%]="care"></div>
-      </div>
-    </div>
   </div>
 
-  <!-- Actions -->
-  <div class="actions" *ngIf="gameState === 'playing'">
-    <button (click)="listen()">Listen</button>
-    <button (click)="surprise()">Surprise</button>
-    <button (click)="support()">Support</button>
-    <button (click)="giveSpace()">Give Space</button>
-    <button (click)="communicate()">Communicate</button>
-  </div>
+  <!-- MESSAGE -->
+  <p class="game-message">{{ message }}</p>
 
-  <!-- Result -->
-  <div class="result" *ngIf="gameState !== 'playing'">
-    <h4 *ngIf="gameState === 'win'">🌸 Love Blossomed</h4>
-    <h4 *ngIf="gameState === 'lose'">🌧 Love Faded</h4>
-    <button (click)="startGame()">Restart</button>
-  </div>
+  <!-- SCORE -->
+  <p class="score">Score: {{ score }}/{{ targetScore }}</p>
 
-  <div class="timer">
-    Time: {{ timeLeft }}s
+  <!-- FINAL REWARD -->
+  <div *ngIf="gameWon" class="love-final">
+    <h2>💖 You Chose Me 💖</h2>
+    <p>I was never hiding… I just wanted you to choose me every time ❤️</p>
+    <button (click)="restart()">Play Again</button>
   </div>
 
 </div>

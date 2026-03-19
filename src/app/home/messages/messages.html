@@ -10,29 +10,50 @@
     </p>
   </div>
 
-  <div class="row g-4 messages-row">
+<div class="row g-4 messages-row">
 
-    <div class="col-md-6" *ngFor="let msg of [1,2,3,4]">
-      <div class="message-card">
-        <div class="card-body">
+  <div class="col-md-6" *ngFor="let msg of visibleMessages; let i = index">
+    <div class="message-card">
+      <div class="card-body">
 
-          <div class="message-top">
-            <div class="author">
-              <i class="bi bi-person-circle"></i>
-              <span>Friend {{msg}}</span>
-            </div>
+        <div class="message-top">
+          <div class="author">
+            <i class="bi bi-heart-fill"></i>
+            <span>Memory {{ currentIndex + i + 1 }}</span>
           </div>
-
-          <div class="quote-mark">“</div>
-
-          <p class="message-text">
-            Wishing you a year full of happiness, growth, and unforgettable memories!
-          </p>
-
         </div>
+
+        <div class="quote-mark">“</div>
+
+        <p class="message-text">
+          {{ msg }}
+        </p>
+
       </div>
     </div>
-
   </div>
+
+</div>
+
+<!-- Navigation Buttons -->
+<div class="text-center mt-4">
+
+  <button
+    class="btn btn-outline-secondary me-2"
+    (click)="prev()"
+    [disabled]="currentIndex === 0"
+  >
+    ⬅ Previous
+  </button>
+
+  <button
+    class="btn btn-gradient"
+    (click)="next()"
+    [disabled]="currentIndex + pageSize >= allMessages.length"
+  >
+    Next ❤️
+  </button>
+
+</div>
 
 </div>

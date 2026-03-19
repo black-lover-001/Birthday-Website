@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,89 +8,87 @@ import { CommonModule } from '@angular/common';
   templateUrl: './games.html',
   styleUrl: './games.scss',
 })
-export class Games implements OnInit, OnDestroy {
+export class Games implements OnInit {
+  brokenIndexes: number[] = [];
+  targetScore = 7;
+  hearts = Array(6).fill(0);
+  correctIndex = 0;
 
-  trust = 100;
-  passion = 100;
-  care = 100;
+  message = '';
+  score = 0;
+  gameWon = false;
 
-  timeLeft = 60;
-  gameState: 'playing' | 'win' | 'lose' = 'playing';
+  positions: { top: number; left: number }[] = [];
 
-  private drainInterval: any;
-  private timerInterval: any;
+  shake = false;
 
   ngOnInit() {
-    this.startGame();
+    this.generatePositions();
+    this.randomize();
   }
 
-  ngOnDestroy() {
-    clearInterval(this.drainInterval);
-    clearInterval(this.timerInterval);
+  randomize() {
+    this.correctIndex = Math.floor(Math.random() * this.hearts.length);
+    this.generatePositions();
   }
 
-  startGame() {
-    this.trust = 100;
-    this.passion = 100;
-    this.care = 100;
-    this.timeLeft = 60;
-    this.gameState = 'playing';
-
-    clearInterval(this.drainInterval);
-    clearInterval(this.timerInterval);
-
-    this.drainInterval = setInterval(() => this.drain(), 2000);
-    this.timerInterval = setInterval(() => this.timer(), 1000);
+  generatePositions() {
+    this.positions = this.hearts.map(() => ({
+      top: Math.random() * 60,
+      left: Math.random() * 60
+    }));
   }
 
-  drain() {
-    if (this.gameState !== 'playing') return;
+  clickHeart(index: number) {
+    if (this.gameWon) return;
 
-    this.trust -= 3;
-    this.passion -= 4;
-    this.care -= 2;
+    if (index === this.correctIndex) {
+      this.score++;
+      // 💥 RESET ALL BROKEN HEARTS
+  this.brokenIndexes = [];
 
-    if (this.trust <= 0 || this.passion <= 0 || this.care <= 0) {
-      this.endGame('lose');
+      if (this.score >= this.targetScore) {
+        this.gameWon = true;
+        this.message = "No matter how many choices… you always chose me ❤️";
+      } else {
+        this.message = "You found me 😍";
+        this.randomize();
+      }
+
+    } else {
+      this.triggerShake();
+      
+      const msgs = [
+        "Missed me 😅",
+        "Still searching? 😏",
+        "Wrong one baby 😜",
+        "I'm not that easy ❤️"
+      ];
+      if (!this.brokenIndexes.includes(index)) {
+        this.brokenIndexes.push(index);
+      }
+  
+      this.message = msgs[Math.floor(Math.random() * msgs.length)];
     }
   }
 
-  timer() {
-    if (this.gameState !== 'playing') return;
-
-    this.timeLeft--;
-    if (this.timeLeft <= 0) {
-      this.endGame('win');
-    }
+  triggerShake() {
+    this.shake = true;
+    setTimeout(() => this.shake = false, 300);
   }
 
-  endGame(state: 'win' | 'lose') {
-    this.gameState = state;
-    clearInterval(this.drainInterval);
-    clearInterval(this.timerInterval);
-  }
-
-  listen() {
-    this.trust += 8;
-    this.care += 5;
-  }
-
-  surprise() {
-    this.passion += 10;
-    this.trust -= 3;
-  }
-
-  support() {
-    this.care += 10;
-  }
-
-  giveSpace() {
-    this.trust += 6;
-    this.passion -= 4;
-  }
-
-  communicate() {
-    this.trust += 5;
-    this.passion += 5;
+  restart() {
+    this.score = 0;
+    this.gameWon = false;
+    this.message = '';
+    this.randomize();
   }
 }
+
+
+
+
+
+
+
+

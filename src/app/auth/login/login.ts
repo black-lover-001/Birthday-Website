@@ -49,32 +49,49 @@ export class Login {
       return;
     }
 
-    this.authService.login(this.emailOrMobile, this.password).subscribe({
-      next: (res: any) => {
-        console.log("this is resp", res)
-        if (res.status === 'success') {
-          this.alertType = 'success';
-          this.alertMessage = 'Login successful. Redirecting…';
+    // this.authService.login(this.emailOrMobile, this.password).subscribe({
+    //   next: (res: any) => {
+    //     console.log("this is resp", res)
+    //     if (res.status === 'success') {
+    //       this.alertType = 'success';
+    //       this.alertMessage = 'Login successful. Redirecting…';
 
-          localStorage.setItem('user_id', res.user_id.toString());
+    //       localStorage.setItem('user_id', res.user_id.toString());
+    //       this.isLoading = true;
+
+    //       setTimeout(() => {
+    //         this.router.navigate(['/home']);
+    //       }, 1000);
+    //     } else {
+    //       console.log("resp error", res)
+    //       this.alertType = 'error';
+    //       this.alertMessage = this.getUserMessage(res.message);
+    //     }
+    //   },
+    //   error: () => {
+    //     console.log("error")
+    //     this.alertType = 'error';
+    //     this.alertMessage =
+    //       'We are unable to connect right now. Please try again later.';
+    //   },
+    // });
+  
+  console.log("this is a this.emailOrMobile", this.emailOrMobile)
+  console.log("this is a this.password", this.password)
+    if (this.emailOrMobile === "tharunvenki1120@gmail.com" && this.password === "tharunvenki"){
+      console.log("login succssfully")
+              this.alertType = 'success';
+          this.alertMessage = 'Login successful. Redirecting…';
           this.isLoading = true;
 
           setTimeout(() => {
             this.router.navigate(['/home']);
           }, 1000);
-        } else {
-          console.log("resp error", res)
-          this.alertType = 'error';
-          this.alertMessage = this.getUserMessage(res.message);
-        }
-      },
-      error: () => {
-        console.log("error")
-        this.alertType = 'error';
-        this.alertMessage =
-          'We are unable to connect right now. Please try again later.';
-      },
-    });
+
+  }  
+  else{
+    console.log("login failed")
   }
+}
 }
 

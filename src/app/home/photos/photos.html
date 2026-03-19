@@ -8,16 +8,33 @@
     <p class="subtitle">Beautiful memories captured 📸</p>
   </div>
 
-  <div class="row g-4 gallery-row">
-
-    <div class="col-md-4 col-sm-6" *ngFor="let photo of [1,2,3,4,5,6]">
-      <div class="photo-card">
-        <img
-          src="https://picsum.photos/600/400?random={{photo}}"
-          alt="Birthday Photo"
-        />
-      </div>
+  <!-- GRID -->
+  <div class="gallery-grid">
+    <div
+      class="photo-card"
+      *ngFor="let photo of photos; let i = index"
+      (click)="openModal(i)"
+      [class.no-hover]="selectedIndex !== null"
+    >
+      <img [src]="photo" />
     </div>
+  </div>
+
+</div>
+
+<!-- 🔥 MODAL -->
+<div class="photo-modal" *ngIf="selectedIndex !== null">
+
+  <div class="modal-backdrop" (click)="closeModal()"></div>
+
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <!-- <span class="close-btn" (click)="closeModal()">✕</span> -->
+
+    <img [src]="photos[selectedIndex!]" />
+
+    <!-- <button class="nav prev" (click)="prevImage($event)">‹</button>
+<button class="nav next" (click)="nextImage($event)">›</button> -->
 
   </div>
 

@@ -121,3 +121,15 @@
     }
   }
 }
+
+
+.btn-gradient {
+  background: linear-gradient(135deg, #ff6b6b, #f06595);
+  color: white;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-gradient:hover {
+  transform: scale(1.05);
+}
