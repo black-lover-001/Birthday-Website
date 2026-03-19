@@ -82,6 +82,7 @@ export class Login {
       console.log("login succssfully")
               this.alertType = 'success';
           this.alertMessage = 'Login successful. Redirecting…';
+          localStorage.setItem('loggedIn', 'true');
           this.isLoading = true;
 
           setTimeout(() => {
