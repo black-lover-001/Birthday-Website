@@ -19,14 +19,14 @@
         <div class="message-top">
           <div class="author">
             <i class="bi bi-heart-fill"></i>
-            <span>Memory {{ currentIndex + i + 1 }}</span>
+            <span class="message-title">{{ msg.title }}</span>
           </div>
         </div>
 
         <div class="quote-mark">“</div>
 
         <p class="message-text">
-          {{ msg }}
+          {{ msg.text }}
         </p>
 
       </div>
