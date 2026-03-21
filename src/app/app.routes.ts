@@ -31,12 +31,12 @@ export const routes: Routes = [
         import('./home/wishes/wishes')
           .then(m => m.Wishes)
     },
-    {
-      path: 'photos',
-      loadComponent: () =>
-        import('./home/photos/photos')
-          .then(m => m.Photos)
-    },
+    // {
+    //   path: 'photos',
+    //   loadComponent: () =>
+    //     import('./home/photos/photos')
+    //       .then(m => m.Photos)
+    // },
     {
       path: 'messages',
       loadComponent: () =>
